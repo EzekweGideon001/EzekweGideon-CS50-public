@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice</h2>
+                <hr>
+                <!-- Question 1 -->
+                <div class="question">
+                    <h3>1. What is the largest organ in the human body?</h3>
+                    <button class="wrong_option">Liver</button>
+                    <button class="correct_option">Skin</button>
+                    <button class="wrong_option">Heart</button>
+                    <button class="wrong_option">Brain</button>
+                    <div class="correction"></div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question">
+                    <h3>2. Who painted the ceiling of the Sistine Chapel?</h3>
+                    <button class="wrong_option">Leonardo da Vinci</button>
+                    <button class="wrong_option">Vincent van Gogh</button>
+                    <button class="correct_option">Michelangelo</button>
+                    <button class="wrong_option">Raphael</button>
+                    <div class="correction"></div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question">
+                    <h3>3. What is the largest planet in our solar system?</h3>
+                    <button class="wrong_option">Mercury</button>
+                    <button class="correct_option">Jupiter</button>
+                    <button class="wrong_option">Earth</button>
+                    <button class="wrong_option">Saturn</button>
+                    <div class="correction"></div>
+                </div>
+            </div>
+
+            <!-- Free Response -->
+            <div class="section">
+                <div class="question">
+                    <h3>1. What is the capital of France?</h3>
+                    <form onsubmit="checkAnswer(event);" class="form">
+                        <input type="text" class="answer" id="0">
+                        <button type="submit">Check answer</button>
+                    </form>
+                    <div class="correction"></div>
+                </div>
+
+
+                <!-- Question 2 -->
+                <div class="question">
+                    <h3>2. Which element has the chemical symbol 'O'?</h3>
+                    <form onsubmit="checkAnswer(event);" class="form">
+                        <input type="text" class="answer" id="1">
+                        <button type="submit">Check answer</button>
+                    </form>
+                    <div class="correction"></div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question">
+                    <h3>3. What color is the sky on a clear day?</h3>
+                    <form onsubmit="checkAnswer(event);" class="form">
+                        <input type="text" class="answer" id="2">
+                        <button type="submit">Check answer</button>
+                    </form>
+                    <div class="correction"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            // Select all questions
+            const questions = document.querySelectorAll('.question');
+
+            // Loop through each question
+            questions.forEach(question => {
+                // Get all wrong and correct options and correction div
+                const wrongOptions = question.querySelectorAll('.wrong_option');
+                const correctOption = question.querySelector('.correct_option');
+                const correctionDiv = question.querySelector('.correction');
+                const answer = question.querySelector('.answer');
+
+                // Add event listener to the correct option
+                correctOption.addEventListener('click', () => {
+                    correctOption.style.cssText = 'background-color: green; color: white;';
+                    correctionDiv.innerHTML = '<p>Correct!</p>';
+                });
+
+                // Add event listener to all wrong options
+                wrongOptions.forEach(option => {
+                    option.addEventListener('click', () => {
+                        option.style.cssText = 'background-color: red; color: white;';
+                        correctionDiv.innerHTML = '<p>Incorrect</p>';
+                    });
+                });
+
+                // For Free response questions
+                function checkAnswer() {
+                    const answer = document.querySelector('.answer').value;
+                    const answer_num = Number(document.querySelector('.answer').id);
+                    const correctAnswers = ['paris', 'oxygen', 'blue'];
+                    const correctionDiv = document.querySelector('.correction');
+
+                    if (answer.toLowerCase() === correctAnswers[answer_num].toLowerCase()){
+                        correctionDiv.innerHTML = '<p>Correct!</p>';
+                        document.querySelector('.answer').style.cssText = 'background-color: green;'
+                    }
+
+                    else{
+                        correctionDiv.innerHTML = '<p>Incorrect</p>';
+                        document.querySelector('.answer').style.cssText = 'background-color: red;'
+                    }
+
+                }
+            });
+
+        // Function to check free response answers
+        function checkAnswer(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const form = event.target; // Current form
+            const input = form.querySelector('.answer'); // Input within the form
+            const correctionDiv = form.nextElementSibling; // Correction div after form
+
+            const correctAnswers = ['paris', 'oxygen', 'blue'];
+            const questionIndex = parseInt(input.id, 10); // Get the question index from the input ID
+
+            if (input.value.toLowerCase() === correctAnswers[questionIndex]) {
+                correctionDiv.innerHTML = '<p>Correct!</p>';
+                input.style.cssText = 'background-color: green; color: white;';
+            } else {
+                correctionDiv.innerHTML = '<p>Incorrect</p>';
+                input.style.cssText = 'background-color: red; color: white;';
+            }
+        }
+        </script>
+    </body>
+</html>

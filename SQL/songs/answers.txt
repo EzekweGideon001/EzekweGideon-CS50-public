@@ -1,0 +1,51 @@
+# Here's a little Easter egg showing that I, Ezekwe Gideon Somtochukwu actually wrote this code. IG:@lets_patois
+
+To calculate the "Audio Aura" of the listener. I might take a simple approach as such:
+1. Extract the key attributes (energy, valence and danceability):
+    I might decide to get an average of these attributes to estimate the user's aura.
+    ENERGY:
+        High (0.700 - 1.000) may be linked to an intense mood (Orange or Purple)
+        Medium (0.400 - 0.699) may mean a calmer, introspective or motivational mood (Yello or Green)
+        Low (0.000 - 0.399) may suggest a more emotional or romantic mood (Blue or Pink)
+    VALENCE (Positivity):
+        High (0.700 - 1.000): may be linked to a hopeful mood (Yellow, Pink, Purple)
+		Medium (0.400 - 0.699): A mix of both positive and melancholic moods (Green, Orange)
+        Low (0.000 - 0.399): suggests somber or introspective feelings (Blue)
+    DANCEABILITY:
+        High (0.700 - 1.000): suggests the listener prefers lively music (Orange or Purple).
+		Medium (0.400 - 0.699): a balance between danceable tunes and complexity (Green or Yellow).
+        Low (0.000 - 0.399): shows less danceable, more emotional or ambient music (Blue, Pink).
+2. Pair the Results together to create a final category. Like so:
+    +------------+------------+------------------+-----------------------------+--------------+
+    | Energy     | Valence    | Danceability     | Mood Description            | Aura Color   |
+    +------------+------------+------------------+-----------------------------+--------------+
+    | High       | High       | High             | Bold, confident, joyful     | Orange       |
+    | High       | High       | Medium           | Energetic but focused       | Yellow       |
+    | High       | Medium     | High             | Bold with balanced emotions | Green        |
+    | High       | Low        | High             | Intense but somber          | Purple       |
+    | High       | Medium     | Medium           | Dynamic yet thoughtful      | Green        |
+    | Medium     | High       | High             | Motivated and joyful        | Pink         |
+    | Medium     | High       | Medium           | Uplifting but relaxed       | Yellow       |
+    | Medium     | Medium     | Medium           | Calm and introspective      | Green        |
+    | Medium     | Medium     | High             | Fun and engaging            | Orange       |
+    | Medium     | Low        | Low              | Reflective and emotional    | Blue         |
+    | Low        | Medium     | Low              | Wistful and melancholic     | Blue         |
+    | Low        | Low        | Medium           | Romantic and dreamy         | Pink         |
+    | Low        | High       | Low              | Hopeful but subtle          | Yellow       |
+    | Low        | Medium     | Medium           | Gentle but impactful        | Green        |
+    +------------+------------+------------------+-----------------------------+--------------+
+
+For instance: This user has an average energy of 0.65906(Medium), and average valence of 0.484443 (Medium)
+    and an average danceability of 0.71646 (High). Therefore, their audio aura is Orange.
+
+
+WHY THIS APPROACH MAY NOT BE FULLY REPRESENTATIVE OF THE USER'S AURA?
+1. Seasonal variation is lost when summarizing the user's aura.
+2. A few extreme values may skew the final result and make it less accurate.
+3. Mood miht also be influenced by the lyrics, tempo or genre of the music listened to.
+
+IMPROVED METHOD TO CALCULATE THE AUDIO AURA MORE ACCURATELY
+1. Weighted averages based on how frequently the songs are played.
+2. Seasonal clustering of the auras rather a yearly summary.
+3. Mood Clustering on energy, valence, danceability, and other features to identify multiple mood clusters.
+4. Inclusion of other attributes such as tempo, loudness, genre, and speechiness.
